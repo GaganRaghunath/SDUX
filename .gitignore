@@ -1,9 +1,40 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# Claude Code & AI agents
+.claude/
+.agent/
+.agents/
+skills/
+.skills/
+ai-agent/
+*-agent/
+agents/
+
+# Graphify
+graphify/
+graphify-out/
+.graphify/
+*graphify*
+/graphify-out/
+
+
 # Gradle files
 .gradle/
 build/
-
-# Local configuration file (sdk path, etc)
-local.properties
 
 # Log/OS Files
 *.log
@@ -17,7 +48,6 @@ captures/
 output-metadata.json
 
 # IntelliJ
-*.iml
 .idea/
 misc.xml
 deploymentTargetDropDown.xml

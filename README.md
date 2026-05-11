@@ -1,2 +1,2 @@
 # SDUX
-Investigating server deriven UI.
+Investigating server driven UI.
