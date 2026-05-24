@@ -26,3 +26,4 @@ rootProject.name = "SDUX"
 include(":app")
 include(":domain")
 include(":data")
+include(":test-shared")

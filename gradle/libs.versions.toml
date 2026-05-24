@@ -44,6 +44,12 @@ retrofit = "3.0.0"
 junit               = "4.13.2"
 junit-ext           = "1.3.0"
 espresso            = "3.7.0"
+mockk               = "1.14.2"
+turbine             = "1.2.0"
+kotest              = "5.9.1"
+arch-core-test      = "2.2.0"
+androidx-test-core  = "1.6.1"
+test-logger         = "4.0.0"
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -100,6 +106,12 @@ androidx-junit                      = { group = "androidx.test.ext",      name =
 androidx-espresso-core              = { group = "androidx.test.espresso", name = "espresso-core",   version.ref = "espresso" }
 androidx-compose-ui-test-junit4     = { group = "androidx.compose.ui",   name = "ui-test-junit4"                             }
 androidx-compose-ui-test-manifest   = { group = "androidx.compose.ui",   name = "ui-test-manifest"                           }
+mockk                               = { group = "io.mockk",              name = "mockk",           version.ref = "mockk"    }
+mockk-android                       = { group = "io.mockk",              name = "mockk-android",   version.ref = "mockk"    }
+turbine                             = { group = "app.cash.turbine",       name = "turbine",         version.ref = "turbine"  }
+kotest-assertions-core              = { group = "io.kotest",             name = "kotest-assertions-core", version.ref = "kotest" }
+androidx-arch-core-test             = { group = "androidx.arch.core",    name = "core-testing",    version.ref = "arch-core-test" }
+androidx-test-core-ktx              = { group = "androidx.test",         name = "core-ktx",        version.ref = "androidx-test-core" }
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -166,6 +178,24 @@ testing-android = [
     "androidx-espresso-core",
 ]
 
+# Shared test infra — all reusable test utilities (unit + instrumented)
+test-shared = [
+    "junit",
+    "kotlinx-coroutines-test",
+    "mockk",
+    "turbine",
+    "kotest-assertions-core",
+    "androidx-arch-core-test",
+    "androidx-test-core-ktx",
+]
+
+# Shared test infra extras for instrumented tests
+test-shared-android = [
+    "mockk-android",
+    "androidx-junit",
+    "androidx-espresso-core",
+]
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -178,3 +208,4 @@ kotlin-compose        = { id = "org.jetbrains.kotlin.plugin.compose",      versi
 kotlin-serialization  = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 hilt-android          = { id = "com.google.dagger.hilt.android",            version.ref = "hilt"   }
 ksp                   = { id = "com.google.devtools.ksp",                   version.ref = "ksp"    }
+test-logger           = { id = "com.adarshr.test-logger",                   version.ref = "test-logger" }
