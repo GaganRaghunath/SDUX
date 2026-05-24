@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.compose)
@@ -66,6 +67,9 @@ dependencies {
 
     // Navigation 3
     implementation(libs.bundles.navigation3)
+
+    // Serialization — runtime; compiler plugin generates $serializer for @Serializable classes
+    implementation(libs.kotlinx.serialization.core)
 
     // WorkManager + Hilt Worker factory
     implementation(libs.bundles.work)

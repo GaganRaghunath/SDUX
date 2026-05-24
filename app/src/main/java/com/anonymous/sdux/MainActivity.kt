@@ -3,7 +3,7 @@ package com.anonymous.sdux
 import androidx.compose.runtime.Composable
 import com.anonymous.sdux.base.ui.BaseActivity
 import com.anonymous.sdux.framework.navigation.AppNavHost
-import com.anonymous.sdux.framework.navigation.AppRoute
+import com.anonymous.sdux.feature.auth.navigation.AuthRoute
 import com.anonymous.sdux.framework.navigation.NavGraphRegistry
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -17,7 +17,7 @@ class MainActivity : BaseActivity() {
     @Composable
     override fun Content() {
         AppNavHost(
-            startRoute = AppRoute.Home,
+            startRoute = AuthRoute.Login,
             graphs     = navGraphRegistry.graphs
         )
     }

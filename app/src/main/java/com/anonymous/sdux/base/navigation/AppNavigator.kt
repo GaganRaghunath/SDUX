@@ -3,7 +3,8 @@ package com.anonymous.sdux.base.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.navigation3.runtime.NavBackStack
+import androidx.navigation3.runtime.NavKey
 
 /**
  * App-wide navigation contract.
@@ -35,11 +36,11 @@ val LocalAppNavigator = compositionLocalOf<AppNavigator> {
 // ── Internal implementation ───────────────────────────────────────────────────
 
 internal class AppNavigatorImpl(
-    private val backStack: SnapshotStateList<Any>
+    private val backStack: NavBackStack<NavKey>
 ) : AppNavigator {
 
     override fun navigate(route: Any) {
-        backStack.add(route)
+        backStack.add(route as NavKey)
     }
 
     override fun navigateBack() {
@@ -57,10 +58,10 @@ internal class AppNavigatorImpl(
 
     override fun replaceAll(route: Any) {
         backStack.clear()
-        backStack.add(route)
+        backStack.add(route as NavKey)
     }
 }
 
 @Composable
-internal fun rememberAppNavigator(backStack: SnapshotStateList<Any>): AppNavigator =
+internal fun rememberAppNavigator(backStack: NavBackStack<NavKey>): AppNavigator =
     remember(backStack) { AppNavigatorImpl(backStack) }

@@ -31,6 +31,9 @@ hilt-ext            = "1.3.0"
 # ── Navigation 3 ──────────────────────────────────────────────────────────────
 navigation3         = "1.1.2"   # alpha — verify latest at d.android.com/jetpack/androidx/releases/navigation3
 
+# ── Serialization ─────────────────────────────────────────────────────────────
+serialization       = "1.7.3"   # aligned with kotlinx-serialization-core pulled in by navigation3-runtime
+
 # ── WorkManager ───────────────────────────────────────────────────────────────
 work                = "2.11.2"
 
@@ -81,6 +84,9 @@ androidx-hilt-compiler              = { group = "androidx.hilt",     name = "hil
 # ── Navigation 3 ──────────────────────────────────────────────────────────────
 androidx-navigation3-runtime        = { group = "androidx.navigation3", name = "navigation3-runtime", version.ref = "navigation3" }
 androidx-navigation3-ui             = { group = "androidx.navigation3", name = "navigation3-ui",      version.ref = "navigation3" }
+
+# ── Serialization ─────────────────────────────────────────────────────────────
+kotlinx-serialization-core          = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "serialization" }
 
 # ── WorkManager ───────────────────────────────────────────────────────────────
 androidx-work-runtime-ktx           = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "work" }
@@ -167,7 +173,8 @@ testing-android = [
 
 android-application = { id = "com.android.application",             version.ref = "agp"    }
 android-library     = { id = "com.android.library",                 version.ref = "agp"    }
-kotlin-android      = { id = "org.jetbrains.kotlin.android",        version.ref = "kotlin" }
-kotlin-compose      = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-hilt-android        = { id = "com.google.dagger.hilt.android",      version.ref = "hilt"   }
-ksp                 = { id = "com.google.devtools.ksp",             version.ref = "ksp"    }
+kotlin-android        = { id = "org.jetbrains.kotlin.android",              version.ref = "kotlin" }
+kotlin-compose        = { id = "org.jetbrains.kotlin.plugin.compose",      version.ref = "kotlin" }
+kotlin-serialization  = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+hilt-android          = { id = "com.google.dagger.hilt.android",            version.ref = "hilt"   }
+ksp                   = { id = "com.google.devtools.ksp",                   version.ref = "ksp"    }
