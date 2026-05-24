@@ -12,6 +12,10 @@ plugins {
 }
 
 // ── Detekt — applied once here, covers every module ──────────────────────────
+// libs accessor is not available inside subprojects {} (it resolves as a subproject
+// extension, not the root project's type-safe accessor). Use VersionCatalog API instead.
+val catalog = extensions.getByType<VersionCatalogsExtension>().named("libs")
+
 subprojects {
     apply(plugin = "io.gitlab.arturbosch.detekt")
 
@@ -25,8 +29,8 @@ subprojects {
 
     dependencies {
         // ktlint-backed formatting rules (indent, trailing comma, imports …)
-        "detektPlugins"(libs.detekt.formatting)
+        "detektPlugins"(catalog.findLibrary("detekt-formatting").get())
         // Twitter Compose static analysis rules
-        "detektPlugins"(libs.twitter.compose.rules)
+        "detektPlugins"(catalog.findLibrary("twitter-compose-rules").get())
     }
 }
