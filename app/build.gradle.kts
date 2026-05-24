@@ -75,7 +75,7 @@ dependencies {
     implementation(libs.bundles.work)
 
     // Unit tests
-    testImplementation(libs.bundles.testing)
+    testImplementation(project(":test-shared"))
 
     // Instrumented tests
     androidTestImplementation(libs.bundles.testing.android)
