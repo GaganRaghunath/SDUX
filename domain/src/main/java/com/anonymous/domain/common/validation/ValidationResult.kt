@@ -4,12 +4,12 @@ sealed class ValidationResult {
 
     data object Valid : ValidationResult()
 
-    data class Invalid(val errors: List<String>) : ValidationResult() {
+    data class Invalid(override val errors: List<String>) : ValidationResult() {
         constructor(vararg errors: String) : this(errors.toList())
     }
 
     val isValid: Boolean get() = this is Valid
-    val errors: List<String> get() = if (this is Invalid) errors else emptyList()
+    open val errors: List<String> get() = if (this is Invalid) errors else emptyList()
 }
 
 operator fun ValidationResult.plus(other: ValidationResult): ValidationResult = when {

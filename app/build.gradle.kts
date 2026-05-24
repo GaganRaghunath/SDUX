@@ -1,5 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.hilt.android)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.compose)
 }
 
@@ -40,6 +42,10 @@ android {
 }
 
 dependencies {
+    // Modules
+    implementation(project(":domain"))
+    implementation(project(":data"))
+
     // Core
     implementation(libs.androidx.core.ktx)
 
@@ -52,6 +58,17 @@ dependencies {
     // Compose — BOM pins all artifact versions; bundle supplies the artifacts
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.bundles.compose)
+
+    // Hilt — DI runtime + hiltViewModel() + Navigation Compose integration
+    implementation(libs.bundles.hilt)
+    ksp(libs.hilt.android.compiler)
+    ksp(libs.androidx.hilt.compiler)       // WorkManager + Navigation factory
+
+    // Navigation 3
+    implementation(libs.bundles.navigation3)
+
+    // WorkManager + Hilt Worker factory
+    implementation(libs.bundles.work)
 
     // Unit tests
     testImplementation(libs.bundles.testing)

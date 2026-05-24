@@ -6,22 +6,36 @@
 
 # ── Build tools ───────────────────────────────────────────────────────────────
 agp                 = "9.1.1"
-kotlin              = "2.2.10"
+kotlin              = "2.3.21"
+ksp                 = "2.3.4"
 
 # ── Android core ──────────────────────────────────────────────────────────────
-appcompat           = "1.6.1"
+appcompat           = "1.7.1"
 core-ktx            = "1.18.0"
-material            = "1.13.0"
+material            = "1.14.0"
 
 # ── Jetpack Compose ───────────────────────────────────────────────────────────
 activity-compose    = "1.13.0"
-compose-bom         = "2026.02.01"
+compose-bom         = "2026.05.01"
 
 # ── Lifecycle ─────────────────────────────────────────────────────────────────
 lifecycle           = "2.10.0"
 
 # ── Coroutines ────────────────────────────────────────────────────────────────
-coroutines          = "1.9.0"
+coroutines          = "1.11.0"
+
+# ── DI – Hilt ─────────────────────────────────────────────────────────────────
+hilt                = "2.59.2"
+hilt-ext            = "1.3.0"
+
+# ── Navigation 3 ──────────────────────────────────────────────────────────────
+navigation3         = "1.1.2"   # alpha — verify latest at d.android.com/jetpack/androidx/releases/navigation3
+
+# ── WorkManager ───────────────────────────────────────────────────────────────
+work                = "2.11.2"
+
+# ── Retrofit ───────────────────────────────────────────────────────────────
+retrofit = "3.0.0"
 
 # ── Testing ───────────────────────────────────────────────────────────────────
 junit               = "4.13.2"
@@ -56,6 +70,23 @@ androidx-lifecycle-viewmodel-ktx    = { group = "androidx.lifecycle", name = "li
 kotlinx-coroutines-core             = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core",    version.ref = "coroutines" }
 kotlinx-coroutines-android          = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlinx-coroutines-test             = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test",    version.ref = "coroutines" }
+
+# ── Hilt ──────────────────────────────────────────────────────────────────────
+hilt-android                        = { group = "com.google.dagger", name = "hilt-android",            version.ref = "hilt"     }
+hilt-android-compiler               = { group = "com.google.dagger", name = "hilt-android-compiler",   version.ref = "hilt"     }
+hilt-navigation-compose             = { group = "androidx.hilt",     name = "hilt-navigation-compose", version.ref = "hilt-ext" }
+hilt-work                           = { group = "androidx.hilt",     name = "hilt-work",               version.ref = "hilt-ext" }
+androidx-hilt-compiler              = { group = "androidx.hilt",     name = "hilt-compiler",           version.ref = "hilt-ext" }
+
+# ── Navigation 3 ──────────────────────────────────────────────────────────────
+androidx-navigation3-runtime        = { group = "androidx.navigation3", name = "navigation3-runtime", version.ref = "navigation3" }
+androidx-navigation3-ui             = { group = "androidx.navigation3", name = "navigation3-ui",      version.ref = "navigation3" }
+
+# ── WorkManager ───────────────────────────────────────────────────────────────
+androidx-work-runtime-ktx           = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "work" }
+
+# ── Retrofit ───────────────────────────────────────────────────────────────
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 
 # ── Testing ───────────────────────────────────────────────────────────────────
 junit                               = { group = "junit",                  name = "junit",           version.ref = "junit"    }
@@ -98,6 +129,25 @@ coroutines = [
     "kotlinx-coroutines-android",
 ]
 
+# Hilt runtime + Compose + Navigation integration — app module only
+# Data module should declare hilt-android individually
+hilt = [
+    "hilt-android",
+    "hilt-navigation-compose",
+]
+
+# Navigation 3 runtime + UI
+navigation3 = [
+    "androidx-navigation3-runtime",
+    "androidx-navigation3-ui",
+]
+
+# WorkManager + Hilt Worker factory
+work = [
+    "androidx-work-runtime-ktx",
+    "hilt-work",
+]
+
 # Unit-test dependencies
 testing = [
     "junit",
@@ -119,3 +169,5 @@ android-application = { id = "com.android.application",             version.ref 
 android-library     = { id = "com.android.library",                 version.ref = "agp"    }
 kotlin-android      = { id = "org.jetbrains.kotlin.android",        version.ref = "kotlin" }
 kotlin-compose      = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+hilt-android        = { id = "com.google.dagger.hilt.android",      version.ref = "hilt"   }
+ksp                 = { id = "com.google.devtools.ksp",             version.ref = "ksp"    }

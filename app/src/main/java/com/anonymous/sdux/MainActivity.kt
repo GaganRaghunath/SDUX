@@ -1,47 +1,24 @@
 package com.anonymous.sdux
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.anonymous.sdux.ui.theme.SDUXTheme
+import com.anonymous.sdux.base.ui.BaseActivity
+import com.anonymous.sdux.framework.navigation.AppNavHost
+import com.anonymous.sdux.framework.navigation.AppRoute
+import com.anonymous.sdux.framework.navigation.NavGraphRegistry
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            SDUXTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
-        }
-    }
-}
+@AndroidEntryPoint
+class MainActivity : BaseActivity() {
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+    @Inject
+    lateinit var navGraphRegistry: NavGraphRegistry
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SDUXTheme {
-        Greeting("Android")
+    @Composable
+    override fun Content() {
+        AppNavHost(
+            startRoute = AppRoute.Home,
+            graphs     = navGraphRegistry.graphs
+        )
     }
 }
