@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<!--
+  Detekt baseline — lists existing violations that are intentionally suppressed.
+  Generate or update with: ./gradlew detektBaseline
+  Once a violation is fixed, remove it from here so it cannot regress.
+-->
+<SmellBaseline>
+  <Blacklist/>
+  <Whitelist/>
+</SmellBaseline>
